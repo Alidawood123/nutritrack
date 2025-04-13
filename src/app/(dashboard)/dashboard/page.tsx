@@ -235,7 +235,7 @@ function DashboardContent() {
                         <div className="text-xl font-bold text-blue-700">
                           {goals.calories || "Not set"}
                           <span className="text-sm font-normal text-gray-500 ml-1">
-                            kcal
+                            cal
                           </span>
                         </div>
                       </div>

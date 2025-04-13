@@ -37,21 +37,6 @@ function SettingsPageContent() {
     dailyFatGoal: 65,
   });
 
-  const proteinCalories = (settings.dailyProteinGoal || 0) * 4;
-  const carbCalories = (settings.dailyCarbGoal || 0) * 4;
-  const fatCalories = (settings.dailyFatGoal || 0) * 9;
-  const totalCalories = settings.dailyCalorieGoal || 0;
-
-  const proteinPercentage = totalCalories
-    ? Math.round((proteinCalories / totalCalories) * 100)
-    : 0;
-  const carbPercentage = totalCalories
-    ? Math.round((carbCalories / totalCalories) * 100)
-    : 0;
-  const fatPercentage = totalCalories
-    ? Math.round((fatCalories / totalCalories) * 100)
-    : 0;
-
   useEffect(() => {
     const fetchUserSettings = async () => {
       setIsLoading(true);
@@ -207,7 +192,7 @@ function SettingsPageContent() {
                       htmlFor="dailyCalorieGoal"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Daily Calorie Goal (kcal)
+                      Daily Calorie Goal (cal)
                     </label>
                     <input
                       id="dailyCalorieGoal"
@@ -233,41 +218,6 @@ function SettingsPageContent() {
                     </h3>
 
                     {/* Macro distribution visualization */}
-                    <div className="flex items-center space-x-1">
-                      <div className="w-4 h-4 bg-emerald-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500 mr-2">
-                        P: {proteinPercentage}%
-                      </span>
-
-                      <div className="w-4 h-4 bg-amber-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500 mr-2">
-                        C: {carbPercentage}%
-                      </span>
-
-                      <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                      <span className="text-xs text-gray-500">
-                        F: {fatPercentage}%
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Visual representation of macros */}
-                  <div className="w-full h-2 flex rounded-full overflow-hidden mb-4">
-                    <div
-                      className="bg-emerald-500 h-full"
-                      style={{ width: `${proteinPercentage}%` }}
-                      title={`Protein: ${proteinPercentage}%`}
-                    ></div>
-                    <div
-                      className="bg-amber-500 h-full"
-                      style={{ width: `${carbPercentage}%` }}
-                      title={`Carbs: ${carbPercentage}%`}
-                    ></div>
-                    <div
-                      className="bg-red-500 h-full"
-                      style={{ width: `${fatPercentage}%` }}
-                      title={`Fat: ${fatPercentage}%`}
-                    ></div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

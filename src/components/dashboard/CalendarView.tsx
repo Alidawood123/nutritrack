@@ -116,6 +116,15 @@ export default function EnhancedCalendarView({
     return dayData.find((d) => d.date === dateString);
   };
 
+  // Calculate percentage for progress bars
+  const calculatePercentage = (
+    value: number,
+    goal: number | null | undefined
+  ) => {
+    if (!goal || goal <= 0) return 0;
+    return Math.min(Math.round((value / goal) * 100), 100);
+  };
+
   const renderDayCell = (day: Date | null, index: number) => {
     if (!day) {
       // Empty cell for days from previous/next month
@@ -207,6 +216,20 @@ export default function EnhancedCalendarView({
 
     const formattedDate = format(selectedDate, "EEEE, MMMM d, yyyy");
 
+    // Calculate percentages for progress bars
+    const proteinPercentage = calculatePercentage(
+      selectedDayData.protein,
+      nutritionGoals?.protein
+    );
+    const carbsPercentage = calculatePercentage(
+      selectedDayData.carbs,
+      nutritionGoals?.carbs
+    );
+    const fatPercentage = calculatePercentage(
+      selectedDayData.fat,
+      nutritionGoals?.fat
+    );
+
     return (
       <div className="p-4 animate-fade-in">
         <div className="flex justify-between items-center mb-4">
@@ -263,6 +286,59 @@ export default function EnhancedCalendarView({
               <div className="flex items-center justify-center">
                 <div className="w-3 h-3 bg-red-500 rounded-full mr-1"></div>
                 <span>Fat</span>
+              </div>
+            </div>
+
+            {/* Progress bars for macros */}
+            <div className="space-y-3">
+              <div>
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="font-medium">Protein</span>
+                  <span>
+                    {selectedDayData.protein.toFixed(1)}g{" "}
+                    {nutritionGoals?.protein
+                      ? `/ ${nutritionGoals.protein}g`
+                      : ""}
+                  </span>
+                </div>
+                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-emerald-500 rounded-full"
+                    style={{ width: `${proteinPercentage}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="font-medium">Carbs</span>
+                  <span>
+                    {selectedDayData.carbs.toFixed(1)}g{" "}
+                    {nutritionGoals?.carbs ? `/ ${nutritionGoals.carbs}g` : ""}
+                  </span>
+                </div>
+                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-amber-500 rounded-full"
+                    style={{ width: `${carbsPercentage}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="font-medium">Fat</span>
+                  <span>
+                    {selectedDayData.fat.toFixed(1)}g{" "}
+                    {nutritionGoals?.fat ? `/ ${nutritionGoals.fat}g` : ""}
+                  </span>
+                </div>
+                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-red-500 rounded-full"
+                    style={{ width: `${fatPercentage}%` }}
+                  ></div>
+                </div>
               </div>
             </div>
           </div>

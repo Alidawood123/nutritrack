@@ -142,7 +142,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
-                      1,850 / 2,200 kcal
+                      1,850 / 2,200 cal
                     </div>
                   </div>
 
@@ -219,7 +219,7 @@ export default function Home() {
                           Oatmeal with Berries
                         </div>
                       </div>
-                      <div className="text-sm font-semibold">320 kcal</div>
+                      <div className="text-sm font-semibold">320 cal</div>
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg flex justify-between items-center">
                       <div>
@@ -228,7 +228,7 @@ export default function Home() {
                           Chicken Salad
                         </div>
                       </div>
-                      <div className="text-sm font-semibold">550 kcal</div>
+                      <div className="text-sm font-semibold">550 cal</div>
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg flex justify-between items-center">
                       <div>
@@ -237,7 +237,7 @@ export default function Home() {
                           Salmon with Vegetables
                         </div>
                       </div>
-                      <div className="text-sm font-semibold">680 kcal</div>
+                      <div className="text-sm font-semibold">680 cal</div>
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg flex justify-between items-center">
                       <div>
@@ -246,7 +246,7 @@ export default function Home() {
                           Greek Yogurt
                         </div>
                       </div>
-                      <div className="text-sm font-semibold">300 kcal</div>
+                      <div className="text-sm font-semibold">300 cal</div>
                     </div>
                   </div>
 
@@ -345,7 +345,7 @@ export default function Home() {
                           <div className="text-2xl font-bold text-blue-700">
                             1,850
                           </div>
-                          <div className="text-xs text-gray-500">kcal</div>
+                          <div className="text-xs text-gray-500">cal</div>
                         </div>
                         <div className="bg-emerald-50 p-4 rounded-lg text-center">
                           <div className="text-sm text-gray-600">Protein</div>

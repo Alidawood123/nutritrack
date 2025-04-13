@@ -122,7 +122,7 @@ export default function FoodItem({
         <div className="flex flex-col items-end">
           <div className="text-lg font-semibold text-gray-900">
             {totalCalories}{" "}
-            <span className="text-sm font-normal text-gray-500">kcal</span>
+            <span className="text-sm font-normal text-gray-500">cal</span>
           </div>
           <div className="flex space-x-1 mt-2">
             <button
@@ -210,7 +210,7 @@ export default function FoodItem({
             <div className="bg-blue-50 p-3 rounded-lg">
               <div className="text-sm text-gray-500">Calories</div>
               <div className="text-lg font-semibold text-blue-600">
-                {food.calories * quantity} kcal
+                {food.calories * quantity} cal
               </div>
             </div>
           </div>
