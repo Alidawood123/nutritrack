@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { Info, ArrowRight } from "lucide-react";
 
 export default function CalorieCalculator() {
@@ -13,6 +13,28 @@ export default function CalorieCalculator() {
   const [formula, setFormula] = useState("mifflin");
   const [showInfo, setShowInfo] = useState(false);
   const [currentGoal, setCurrentGoal] = useState(2000);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCalorieGoal = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch("/api/settings");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.settings && data.settings.dailyCalorieGoal) {
+            setCurrentGoal(data.settings.dailyCalorieGoal);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching calorie goal:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCalorieGoal();
+  }, []);
 
   // Calculate BMR based on selected formula
   const calculateBMR = () => {
@@ -62,8 +84,8 @@ export default function CalorieCalculator() {
 
   const updateGoal = async (calories: SetStateAction<number>) => {
     try {
-      const response = await fetch("/api/user/calorie-goal", {
-        method: "POST",
+      const response = await fetch("/api/settings", {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -389,7 +411,7 @@ export default function CalorieCalculator() {
                   Your Current Calorie Goal
                 </h4>
                 <p className="text-2xl font-bold text-gray-900 mt-1">
-                  {currentGoal}{" "}
+                  {isLoading ? "Loading..." : currentGoal}{" "}
                   <span className="text-sm font-normal text-gray-500">
                     calories/day
                   </span>
